@@ -1,0 +1,40 @@
+/* src/components/RFCSearch/RFCSearch.css */
+.rfc-search {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.rfc-search__alert {
+  padding: 1rem 1.25rem;
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rfc-search__alert--error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.rfc-search__alert--info {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.rfc-search__alert--success {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+@media (max-width: 640px) {
+  .rfc-search {
+    padding: 0.5rem;
+  }
+}

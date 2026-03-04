@@ -1,0 +1,38 @@
+{
+  "development": {
+    "username": "tu_usuario",
+    "password": "tu_password_segura",
+    "database": "efos",
+    "host": "localhost",
+    "port": 5432,
+    "dialect": "postgres",
+    "logging": false,
+    "pool": {
+      "max": 10,
+      "min": 2,
+      "acquire": 30000,
+      "idle": 10000
+    }
+  },
+  "production": {
+    "username": "${DB_USER}",
+    "password": "${DB_PASSWORD}",
+    "database": "${DB_NAME}",
+    "host": "${DB_HOST}",
+    "port": "${DB_PORT}",
+    "dialect": "postgres",
+    "logging": false,
+    "pool": {
+      "max": 20,
+      "min": 5,
+      "acquire": 60000,
+      "idle": 20000
+    },
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  }
+}
