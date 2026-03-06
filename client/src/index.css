@@ -7,18 +7,19 @@
 
 :root {
   /* Colores principales */
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-secondary: #64748b;
-  --color-success: #22c55e;
+  --color-primary: #4d718d;
+  --color-primary-dark: #2a323d;
+  --color-secondary: #4d718c;
+  --color-success: #56D9DB;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
-  --color-info: #3b82f6;
+  --color-info: #A48BE0;
   
   /* Fondos */
-  --bg-primary: #f8fafc;
-  --bg-secondary: #ffffff;
-  --bg-tertiary: #f1f5f9;
+  --bg-primary: #dddddd;
+  --bg-secondary: #c2c8ca;
+  --bg-tertiary: #abc4c9;
+  --bg-found: #e6c5c59f;
   
   /* Texto */
   --text-primary: #1e293b;
@@ -26,7 +27,8 @@
   --text-light: #94a3b8;
   
   /* Bordes */
-  --border-color: #e2e8f0;
+  --border-color: #959697;
+  --border-color-found: #c91107;
   --border-radius: 8px;
   --border-radius-lg: 12px;
   
@@ -45,7 +47,6 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  min-height: 100vh;
 }
 
 a {
@@ -63,15 +64,11 @@ input, textarea, select {
   font-size: inherit;
 }
 
-/* Utilidades */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
+
 
 .text-center {
   text-align: center;
+  
 }
 
 .mt-1 { margin-top: 0.25rem; }

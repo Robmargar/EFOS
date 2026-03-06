@@ -1,18 +1,26 @@
 /* src/components/Header/Header.css */
 .header {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 25%, var(--color-primary) 100%);
   color: white;
-  padding: 2rem 0;
+  padding: 1rem 0;
   box-shadow: var(--shadow-md);
+  border-radius: 0.5rem;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  justify-items: center;
+  align-items: center;
 }
 
 .header__container {
-  max-width: 1200px;
+  min-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
   text-align: center;
 }
-
+.header_image{
+  height: 150px;
+  border-radius: 15px;
+}
 .header__logo {
   display: flex;
   align-items: center;

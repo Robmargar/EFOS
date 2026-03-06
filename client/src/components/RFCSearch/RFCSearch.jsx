@@ -41,21 +41,21 @@ export const RFCSearch = () => {
     setSearched(true);
 
     try {
-      console.log("🔍 Consultando API:", `${API_URL}/search/search`);
-      console.log("📦 RFCs a buscar:", rfcs);
+      // console.log("🔍 Consultando API:", `${API_URL}/search/search`);
+      // console.log("📦 RFCs a buscar:", rfcs);
 
       const response = await axios.post(`${API_URL}/search/search`, {
         rfcs,
       });
 
-      console.log("✅ Respuesta:", response.data);
+      // console.log("✅ Respuesta:", response.data);
 
       setResults(response.data.data?.resultados || []);
       setNotFound(response.data.data?.noEncontrados || []);
 
-      if (response.data.data?.noEncontrados?.length > 0) {
+      if (response.data.data?.noEncontrados?.length > 0  && response.data.data?.resultados.length===0 ) {
         setError(
-          `⚠️ ${response.data.data.noEncontrados.length} RFC(s) no encontrados`,
+          `✅ Felicidades ninguno de los RFC(s) fue encontrado`,
         );
       }
     } catch (err) {
@@ -91,7 +91,7 @@ export const RFCSearch = () => {
       />
 
       {error && (
-        <div className="rfc-search__alert rfc-search__alert--error">
+        <div className="rfc-search__alert rfc-search__alert--success">
           {error}
         </div>
       )}

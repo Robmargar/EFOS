@@ -16,7 +16,10 @@ export const Stats = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        console.log("📡 Solicitando stats a:", `${API_URL}/search/estatus/stats`);
+        console.log(
+          "📡 Solicitando stats a:",
+          `${API_URL}/search/estatus/stats`,
+        );
         const response = await axios.get(`${API_URL}/search/estatus/stats`, {
           timeout: 10000, // 10 segundos timeout
         });
@@ -58,5 +61,47 @@ export const Stats = () => {
     return null;
   }
 
-  return <div className="stats">{/* ... resto del componente ... */}</div>;
+  return (
+    <div className="stats">
+      <div className="stats">
+        <div className="stats__card stats__card--total">
+          {/* <div className="stats__icon">📊</div> */}
+          <div className="stats__content">
+            <span className="stats__value">
+              {stats.totalContribuyentes?.toLocaleString()}
+            </span>
+            <span className="stats__label">Total Contribuyentes</span>
+          </div>
+        </div>
+
+        <div className="stats__card stats__card--update">
+          <div className="stats__content">
+            <span className="stats__value ">
+              {stats.ultimaActualizacion
+                ? new Date(stats.ultimaActualizacion).toLocaleDateString(
+                    "es-MX",
+                  )
+                : "N/A"}
+            </span>
+            <span className="stats__label">Última Actualización</span>
+          </div>
+        </div>
+
+        {stats.porSituacion &&
+          Object.entries(stats.porSituacion).map(([situacion, cantidad]) => (
+            <div
+              key={situacion}
+              className={`stats__card stats__card--${situacion.toLowerCase().replace(" ", "-")}`}
+            >
+              <div className="stats__content">
+                <span className="stats__value">
+                  {cantidad.toLocaleString()}
+                </span>
+                <span className="stats__label">{situacion}</span>
+              </div>
+            </div>
+          ))}
+      </div>
+    </div>
+  );
 };

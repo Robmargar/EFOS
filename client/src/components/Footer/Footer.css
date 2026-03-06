@@ -1,0 +1,31 @@
+.footer{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    color: white;
+    background: linear-gradient(135deg, var(--color-primary-dark) 25%, var(--color-primary) 100%);
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-top: 1rem;  
+}
+.footerSpan{
+    font-size: clamp(0.5rem, 0.75rem, 1rem);
+}
+
+.namePCS{
+    display: grid;
+    grid-template-columns:15% 85%;
+    justify-items: center;
+}
+
+
+@media screen and (max-width: 450px) {
+    .footer{
+        border-radius: 15px;
+    }
+    .footDesactive {
+        display: none;
+  }
+}
