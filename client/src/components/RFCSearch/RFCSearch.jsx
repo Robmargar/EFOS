@@ -15,6 +15,20 @@ export const RFCSearch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searched, setSearched] = useState(false);
+  const [duplicated, setDuplicated] = useState([]);
+
+  const procesarDuplicados = (array) => {
+    const duplicadosRaw = array.filter((item, index) => {
+      return array.indexOf(item) !== index;
+    });
+    const listaDuplicados = [...new Set(duplicadosRaw)];
+    const arrayLimpio = [...new Set(array)];
+
+    return {
+      duplicados: listaDuplicados,
+      limpio: arrayLimpio,
+    };
+  };
 
   const parseRFCs = (text) => {
     return text
@@ -24,7 +38,13 @@ export const RFCSearch = () => {
   };
 
   const handleSearch = async () => {
-    const rfcs = parseRFCs(inputValue);
+    const parse = parseRFCs(inputValue);
+    const resp = procesarDuplicados(parse);
+    const rfcs = resp.limpio;
+
+    if (resp.duplicados.length > 0) {
+      setDuplicated(resp.duplicados);
+    }
 
     if (rfcs.length === 0) {
       setError("⚠️ Ingresa al menos un RFC");
@@ -53,14 +73,13 @@ export const RFCSearch = () => {
       setResults(response.data.data?.resultados || []);
       setNotFound(response.data.data?.noEncontrados || []);
 
-      if (response.data.data?.noEncontrados?.length > 0  && response.data.data?.resultados.length===0 ) {
-        setError(
-          `✅ Felicidades ninguno de los RFC(s) fue encontrado`,
-        );
+      if (
+        response.data.data?.noEncontrados?.length > 0 &&
+        response.data.data?.resultados.length === 0
+      ) {
+        setError(`✅ Felicidades ninguno de los RFC(s) fue encontrado`);
       }
     } catch (err) {
-      console.error("❌ Error en búsqueda:", err);
-      console.error("❌ Detalles:", err.response?.data || err.message);
       setError(
         err.response?.data?.error ||
           "❌ Error al consultar. Intenta nuevamente.",
@@ -76,6 +95,7 @@ export const RFCSearch = () => {
     setInputValue("");
     setResults([]);
     setNotFound([]);
+    setDuplicated([]);
     setError(null);
     setSearched(false);
   };
@@ -102,7 +122,7 @@ export const RFCSearch = () => {
         </div>
       )}
 
-      <ResultsTable results={results} notFound={notFound} loading={loading} />
+      <ResultsTable results={results} notFound={notFound} loading={loading} duplicated={duplicated} />
     </div>
   );
 };

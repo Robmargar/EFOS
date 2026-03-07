@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "./ResultsTable.css";
 
-export const ResultsTable = ({ results, notFound, loading }) => {
-  const [menus, setMenus] = useState({ menu1: false, menu2: false });
-
+export const ResultsTable = ({ results, notFound, loading, duplicated }) => {
+  const [menus, setMenus] = useState({
+    menu1: false,
+    menu2: false,
+    duplicated: false,
+  });
   const getSituacionClass = (situacion) => {
     if (!situacion) return "situacion--unknown";
     const lower = situacion.toLowerCase();
@@ -134,9 +137,54 @@ export const ResultsTable = ({ results, notFound, loading }) => {
                 )}
               </button>
             </div>
-            {menus.menu2  ? (
+            {menus.menu2 ? (
               <div className="results-table__not-found-list">
                 {notFound.map((rfc, index) => (
+                  <span key={index} className="results-table__not-found-item">
+                    <code>{rfc}</code>
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+        )}
+      </section>
+      <section className="results-table">
+        {duplicated && duplicated.length > 0 && (
+          <div className="results-table__not-found">
+            <div className="results-table__not-found-title">
+              <img
+                className="icon"
+                src="/warning-duplicated-icon.svg"
+                alt="check-icon"
+              />
+              <h3 className="results-table__not-found">
+                {duplicated.length} RFC duplicados.
+              </h3>
+              <button
+                className="results-button"
+                onClick={() => toggle("duplicated")}
+              >
+                {!menus.duplicated ? (
+                  <img
+                    className="icon"
+                    src="/arrow-down-icon.svg"
+                    alt="arrow-down-icon"
+                  />
+                ) : (
+                  <img
+                    className="icon"
+                    src="/arrow-up-icon.svg"
+                    alt="arrow-up-icon"
+                  />
+                )}
+              </button>
+            </div>
+            {menus.duplicated ? (
+              <div className="results-table__not-found-list">
+                {duplicated.map((rfc, index) => (
                   <span key={index} className="results-table__not-found-item">
                     <code>{rfc}</code>
                   </span>
