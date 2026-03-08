@@ -12,11 +12,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: {
-    allowedHosts: [
-      'curly-trams-stand.loca.lt', // El host específico que te dio el error
-      '.loca.lt'                   // O usa el punto inicial para permitir CUALQUIER túnel de localtunnel
-    ],
-    host: "0.0.0.0",
+    host: true,
     port: 5180,
     strictPort: true,
     proxy: {

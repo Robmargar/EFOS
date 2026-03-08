@@ -165,6 +165,9 @@
 .icon{
   width: 1.25rem;
 }
+.icon-download{
+  width: 1.75rem;
+}
 
 .results-button{
   display: flex;

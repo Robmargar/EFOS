@@ -68,6 +68,9 @@ export const ResultsTable = ({ results, notFound, loading, duplicated }) => {
               />
             )}
           </button>
+          <button className="results-button">
+            <img className="icon-download" src="/download-icon.svg" alt="download-icon" />
+          </button>
         </div>
         {menus.menu1 ? (
           <div className="results-table__container">
