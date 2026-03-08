@@ -220,6 +220,8 @@ const getStats = async (req, res) => {
   }
 };
 
+
+
 module.exports = {
   searchByRFC,
   searchSingleRFC,
