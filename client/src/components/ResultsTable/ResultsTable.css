@@ -32,7 +32,6 @@
 
 }
 
-
 .results-table__container {
   overflow-x: auto;
 }
@@ -165,8 +164,12 @@
 .icon{
   width: 1.25rem;
 }
+.download{
+  width: 9rem;
+}
 .icon-download{
   width: 1.75rem;
+  margin-left: 3rem;
 }
 
 .results-button{

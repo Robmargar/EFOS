@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import exportarContribuyentesCSV from "../../functions/Cvs_converter";
 import "./ResultsTable.css";
 
 export const ResultsTable = ({ results, notFound, loading, duplicated }) => {
@@ -7,6 +8,7 @@ export const ResultsTable = ({ results, notFound, loading, duplicated }) => {
     menu2: false,
     duplicated: false,
   });
+  console.log(results)
   const getSituacionClass = (situacion) => {
     if (!situacion) return "situacion--unknown";
     const lower = situacion.toLowerCase();
@@ -53,7 +55,7 @@ export const ResultsTable = ({ results, notFound, loading, duplicated }) => {
           <h2 className="results-table__title">
             {results.length} RFC encontrados
           </h2>
-          <button className="results-button" onClick={() => toggle("menu1")}>
+          <button className="results-button" onClick={() => toggle("menu1")} alt="Status-arrow">
             {!menus.menu1 ? (
               <img
                 className="icon"
@@ -68,8 +70,9 @@ export const ResultsTable = ({ results, notFound, loading, duplicated }) => {
               />
             )}
           </button>
-          <button className="results-button">
-            <img className="icon-download" src="/download-icon.svg" alt="download-icon" />
+          <button className="results-button" onClick={()=>exportarContribuyentesCSV(results)} >
+            <img className="icon-download download" src="/download-icon.svg" alt="download-icon" />
+            Descargar Listado
           </button>
         </div>
         {menus.menu1 ? (
